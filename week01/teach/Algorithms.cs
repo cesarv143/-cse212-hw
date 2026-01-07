@@ -38,7 +38,7 @@ public static class Algorithms
     }
 
     /// <summary>
-    /// Algorithm1: Single loop → O(n)
+    /// Algorithm1:O(n)
     /// </summary>
     private static int Algorithm1(int size)
     {
@@ -50,7 +50,7 @@ public static class Algorithms
     }
 
     /// <summary>
-    /// Algorithm2: Nested loops → O(n^2)
+    /// Algorithm2:O(n^2)
     /// </summary>
     private static int Algorithm2(int size)
     {
@@ -63,7 +63,7 @@ public static class Algorithms
     }
 
     /// <summary>
-    /// Algorithm3: Halves the list repeatedly → O(log n)
+    /// Algorithm3: O(log n)
     /// </summary>
     private static int Algorithm3(int size)
     {
