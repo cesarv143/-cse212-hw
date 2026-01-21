@@ -5,170 +5,220 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harry Styles – Aperture Release</title>
     <style>
-        /* Estilos inspirados en la estética de Harry Styles */
         :root {
-            --accent: #e0c3fc; /* Color lila suave */
-            --bg: #0a0a0a;
+            --accent: #e0c3fc;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         body {
             margin: 0;
-            padding: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: var(--bg);
+            background: #0a0a0a;
+            /* Fondo con sutiles luces de colores */
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(224, 195, 252, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(181, 255, 252, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 15% 15%, rgba(224, 195, 252, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(181, 255, 252, 0.08) 0%, transparent 40%);
             color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
-        .container {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            width: 90%;
+        /* CONTENEDOR EXTERIOR QUE SEPARA EL TEXTO DEL CUADRO */
+        .wrapper {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1100px;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* TEXTO FUERA DEL CONTADOR (IZQUIERDA) */
+        .outside-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+
+        .outside-text span {
+            display: block;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .outside-text p {
+            font-size: 2rem;
+            line-height: 1.2;
+            font-weight: 300;
+            font-style: italic;
+            margin: 0;
+            color: #ffffff;
+            border-left: 2px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        /* TARJETA DEL CONTADOR (DERECHA) */
+        .main-card {
+            flex: 1;
+            min-width: 320px;
             max-width: 450px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 40px;
+            border: 1px solid var(--border);
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
         }
 
-        .cover-art {
-            width: 180px;
-            height: 180px;
+        .header img {
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            margin-bottom: 25px;
             border: 2px solid var(--accent);
-            box-shadow: 0 0 30px rgba(224, 195, 252, 0.3);
             object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(224, 195, 252, 0.2);
         }
 
         h1 {
-            font-weight: 300;
-            letter-spacing: 8px;
+            font-weight: 200;
+            letter-spacing: 10px;
             text-transform: uppercase;
             margin: 0;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--accent);
         }
 
-        .track-name {
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            opacity: 0.5;
-            margin-bottom: 30px;
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 40px;
         }
 
-        /* Diseño del Reloj */
-        .countdown-wrapper {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .box {
-            flex: 1;
+        .time-box {
+            background: rgba(255, 255, 255, 0.03);
             padding: 15px 5px;
-            background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
         }
 
-        .num {
-            display: block;
-            font-size: 2rem;
+        .number {
+            font-size: 1.8rem;
             font-weight: 600;
             font-family: 'Courier New', monospace;
+            display: block;
         }
 
         .label {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--accent);
-            opacity: 0.8;
+            margin-top: 5px;
+            display: block;
         }
 
-        #release-msg {
-            display: none;
-            font-size: 2rem;
-            letter-spacing: 4px;
-            color: #b5fffc;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
+        /* RESPONSIVO */
+        @media (max-width: 900px) {
+            .wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .outside-text {
+                max-width: 100%;
+                order: 2; /* Texto abajo en móvil */
+            }
+            .outside-text p {
+                border-left: none;
+                padding-left: 0;
+                font-size: 1.5rem;
+            }
+            .main-card {
+                order: 1; /* Contador arriba en móvil */
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <img src="image2.JPG" alt="Harry Styles" class="cover-art">
-        
-        <h1>Aperture</h1>
-        <div class="track-name">HARRY STYLES</div>
-
-        <div id="clock" class="countdown-wrapper">
-            <div class="box">
-                <span class="num" id="days">00</span>
-                <span class="label">Días</span>
-            </div>
-            <div class="box">
-                <span class="num" id="hours">00</span>
-                <span class="label">Horas</span>
-            </div>
-            <div class="box">
-                <span class="num" id="mins">00</span>
-                <span class="label">Min</span>
-            </div>
-            <div class="box">
-                <span class="num" id="secs">00</span>
-                <span class="label">Seg</span>
-            </div>
+    <div class="wrapper">
+        <div class="outside-text">
+            <span>Para Nallely</span>
+            <p>¿Qué esperas escuchar en este nuevo disco de Harry Styles?</p>
         </div>
 
-        <div id="release-msg">AVAILABLE NOW</div>
+        <div class="main-card">
+            <div class="header">
+                <img src="image2.JPG" alt="Harry Styles">
+                <h1>Aperture</h1>
+            </div>
+
+            <div id="timer" class="countdown-grid">
+                <div class="time-box">
+                    <span class="number" id="days">00</span>
+                    <span class="label">Días</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">Horas</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="mins">00</span>
+                    <span class="label">Min</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="secs">00</span>
+                    <span class="label">Seg</span>
+                </div>
+            </div>
+
+            <div id="finished" style="display:none; font-size: 2rem; margin-top: 30px; color: var(--accent);">
+                OUT NOW 🎶
+            </div>
+        </div>
     </div>
 
     <script>
-        // CONFIGURACIÓN: 22 de enero de 2026
         const targetDate = new Date("January 22, 2026 18:00:00").getTime();
 
-        function updateCountdown() {
+        function update() {
             const now = new Date().getTime();
             const diff = targetDate - now;
 
             if (diff <= 0) {
-                document.getElementById("clock").style.display = "none";
-                document.getElementById("release-msg").style.display = "block";
+                document.getElementById("timer").style.display = "none";
+                document.getElementById("finished").style.display = "block";
                 return;
             }
 
-            // Cálculos
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
             const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            // Mostrar en pantalla
-            document.getElementById("days").innerHTML = d < 10 ? "0" + d : d;
-            document.getElementById("hours").innerHTML = h < 10 ? "0" + h : h;
-            document.getElementById("mins").innerHTML = m < 10 ? "0" + m : m;
-            document.getElementById("secs").innerHTML = s < 10 ? "0" + s : s;
+            const format = (n) => n < 10 ? "0" + n : n;
+
+            document.getElementById("days").innerText = format(d);
+            document.getElementById("hours").innerText = format(h);
+            document.getElementById("mins").innerText = format(m);
+            document.getElementById("secs").innerText = format(s);
         }
 
-        // Actualizar cada segundo
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        setInterval(update, 1000);
+        update();
     </script>
 </body>
 </html>
