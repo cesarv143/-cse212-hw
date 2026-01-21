@@ -1,165 +1,174 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Harry Styles – Aperture Release</title>
-  <style>
-    /* ESTILO */
-    body {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: #0a0a0a; /* Fondo negro */
-      color: #ffffff;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Styles – Aperture Release</title>
+    <style>
+        /* Estilos inspirados en la estética de Harry Styles */
+        :root {
+            --accent: #e0c3fc; /* Color lila suave */
+            --bg: #0a0a0a;
+        }
 
-    /* CONTENEDOR */
-    .card {
-      text-align: center;
-      padding: 20px;
-      width: 90%;
-      max-width: 400px;
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(224, 195, 252, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(181, 255, 252, 0.05) 0%, transparent 50%);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    /* IMAGEN DE HARRY */
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #e0c3fc;
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(224, 195, 252, 0.4);
-    }
+        .container {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
 
-    h1 {
-      font-size: 1.5rem;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: #e0c3fc;
-      margin: 10px 0;
-    }
+        .cover-art {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: 25px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 30px rgba(224, 195, 252, 0.3);
+            object-fit: cover;
+        }
 
-    p.subtitle {
-      font-size: 0.9rem;
-      opacity: 0.6;
-      margin-bottom: 30px;
-    }
+        h1 {
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
 
-    /* RELOJ */
-    #countdown {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      font-family: 'Courier New', Courier, monospace;
-    }
+        .track-name {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            margin-bottom: 30px;
+        }
 
-    .time-block {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 10px 5px;
-      border-radius: 10px;
-    }
+        /* Diseño del Reloj */
+        .countdown-wrapper {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
 
-    .number {
-      display: block;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #fff;
-    }
+        .box {
+            flex: 1;
+            padding: 15px 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    .label {
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      color: #e0c3fc;
-      letter-spacing: 1px;
-    }
+        .num {
+            display: block;
+            font-size: 2rem;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
 
-    /* MENSAJE FINAL */
-    .released {
-      font-size: 2rem;
-      color: #b5fffc;
-      display: none;
-    }
+        .label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            opacity: 0.8;
+        }
 
-    /* MÓVILES */
-    @media (max-width: 350px) {
-      .number { font-size: 1.4rem; }
-      h1 { font-size: 1.2rem; }
-    }
-  </style>
+        #release-msg {
+            display: none;
+            font-size: 2rem;
+            letter-spacing: 4px;
+            color: #b5fffc;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="card">
-    <img src="https://www.billboard.com/wp-content/uploads/2022/05/harry-styles-press-credit-Hanna-Moon-2022-billboard-1548.jpg" alt="Harry Styles" class="profile-img">
-    
-    <h1>Aperture</h1>
-    <p class="subtitle">Harry Styles Release</p>
+    <div class="container">
+        <img src="https://www.billboard.com/wp-content/uploads/2022/05/harry-styles-press-credit-Hanna-Moon-2022-billboard-1548.jpg" alt="Harry Styles" class="cover-art">
+        
+        <h1>Aperture</h1>
+        <div class="track-name">HARRY STYLES</div>
 
-    <div id="countdown">
-      <div class="time-block">
-        <span class="number" id="days">00</span>
-        <span class="label">Días</span>
-      </div>
-      <div class="time-block">
-        <span class="number" id="hours">00</span>
-        <span class="label">Horas</span>
-      </div>
-      <div class="time-block">
-        <span class="number" id="minutes">00</span>
-        <span class="label">Min</span>
-      </div>
-      <div class="time-block">
-        <span class="number" id="seconds">00</span>
-        <span class="label">Seg</span>
-      </div>
+        <div id="clock" class="countdown-wrapper">
+            <div class="box">
+                <span class="num" id="days">00</span>
+                <span class="label">Días</span>
+            </div>
+            <div class="box">
+                <span class="num" id="hours">00</span>
+                <span class="label">Horas</span>
+            </div>
+            <div class="box">
+                <span class="num" id="mins">00</span>
+                <span class="label">Min</span>
+            </div>
+            <div class="box">
+                <span class="num" id="secs">00</span>
+                <span class="label">Seg</span>
+            </div>
+        </div>
+
+        <div id="release-msg">AVAILABLE NOW</div>
     </div>
 
-    <div id="message" class="released">OUT NOW</div>
-  </div>
+    <script>
+        // CONFIGURACIÓN: 22 de enero de 2026, 18:00 (GMT-6)
+        const targetDate = new Date("January 22, 2026 18:00:00").getTime();
 
-  <script>
-    // 22 de enero de 2026
-    const targetDate = new Date("January 22, 2026 18:00:00").getTime();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
 
-    function updateTimer() {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
+            if (diff <= 0) {
+                document.getElementById("clock").style.display = "none";
+                document.getElementById("release-msg").style.display = "block";
+                return;
+            }
 
-      if (diff <= 0) {
-        document.getElementById("countdown").style.display = "none";
-        document.getElementById("message").style.display = "block";
-        return;
-      }
+            // Cálculos
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-      // Cálculos de tiempo
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((diff % (1000 * 60)) / 1000);
+            // Mostrar en pantalla
+            document.getElementById("days").innerHTML = d < 10 ? "0" + d : d;
+            document.getElementById("hours").innerHTML = h < 10 ? "0" + h : h;
+            document.getElementById("mins").innerHTML = m < 10 ? "0" + m : m;
+            document.getElementById("secs").innerHTML = s < 10 ? "0" + s : s;
+        }
 
-      // Números en el HTML con formato 00
-      document.getElementById("days").innerText = d < 10 ? "0" + d : d;
-      document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
-      document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
-      document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
-    }
-
-    // Correr cada segundo
-    setInterval(updateTimer, 1000);
-    updateTimer();
-  </script>
-
+        // Actualizar cada segundo
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 </body>
 </html>
