@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Styles – Lanzamiento</title>
+    <style>
+        :root {
+            --accent: #e0c3fc;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0a0a0a;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(224, 195, 252, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(181, 255, 252, 0.08) 0%, transparent 40%);
+            color: white;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .wrapper {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1100px;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .outside-text { flex: 1; min-width: 300px; max-width: 400px; }
+        .outside-text span { display: block; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 15px; font-weight: bold; }
+        .outside-text p { font-size: 2rem; line-height: 1.2; font-weight: 300; font-style: italic; margin: 0; color: #ffffff; border-left: 2px solid var(--accent); padding-left: 20px; }
+
+        .main-card {
+            flex: 1; min-width: 320px; max-width: 450px; background: var(--glass);
+            backdrop-filter: blur(25px); border-radius: 40px; border: 1px solid var(--border);
+            padding: 40px; text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+        }
+
+        .header img { width: 140px; height: 140px; border-radius: 50%; border: 2px solid var(--accent); object-fit: cover; margin-bottom: 20px; }
+        h1 { font-weight: 200; letter-spacing: 10px; text-transform: uppercase; margin: 0; font-size: 1.5rem; color: var(--accent); }
+
+        .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 40px; }
+        .time-box { background: rgba(255, 255, 255, 0.03); padding: 15px 5px; border-radius: 15px; border: 1px solid var(--border); }
+        .number { font-size: 1.8rem; font-weight: 600; font-family: 'Courier New', monospace; display: block; }
+        .label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-top: 5px; display: block; }
+
+        /* Estilos del reproductor */
+        .audio-section { margin-top: 20px; padding: 15px; background: var(--glass); border-radius: 20px; }
+        audio { width: 100%; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="outside-text">
+            <span>Para Nallely</span>
+            <p>La espera termina. El nuevo álbum de Harry ya está aquí.</p>
+        </div>
+
+        <div class="main-card">
+            <div class="header">
+                <img src="image2.JPG" alt="Harry Styles">
+                <h1>Aperture</h1>
+            </div>
+
+            <div id="timer" class="countdown-grid">
+                <div class="time-box"><span class="number" id="days">00</span><span class="label">Días</span></div>
+                <div class="time-box"><span class="number" id="hours">00</span><span class="label">Horas</span></div>
+                <div class="time-box"><span class="number" id="mins">00</span><span class="label">Min</span></div>
+                <div class="time-box"><span class="number" id="secs">00</span><span class="label">Seg</span></div>
+            </div>
+
+            <div id="finished" style="display:none; font-size: 1.5rem; margin-top: 30px; color: var(--accent);">
+                ¡YA PUEDES ESCUCHARLO! ¡DISFRUTA CADA CANCIÓN! 🎶
+            </div>
+        </div>
+    </div>
+
+    <div class="audio-section">
+        <audio controls>
+            <source src="tu-cancion.mp3" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+    </div>
+
+    <script>
+        // Cambia esta fecha a la del lanzamiento real
+        const targetDate = new Date("December 25, 2026 00:00:00").getTime();
+
+        function update() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById("timer").style.display = "none";
+                document.getElementById("finished").style.display = "block";
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            const format = (n) => n < 10 ? "0" + n : n;
+
+            document.getElementById("days").innerText = format(d);
+            document.getElementById("hours").innerText = format(h);
+            document.getElementById("mins").innerText = format(m);
+            document.getElementById("secs").innerText = format(s);
+        }
+
+        setInterval(update, 1000);
+        update();
+    </script>
+</body>
+</html>
